@@ -1,0 +1,244 @@
+/* ===== PHẦN CÓ THỂ TÙY CHỈNH ===== */
+:root {
+    /* Màu nền: Đỏ rượu vang sang trọng */
+    --bg-color: #2C0E14;
+
+    /* Màu hạt chính: Hồng pastel */
+    --particle-primary: #FFD1DC;
+
+    /* Màu hạt phụ: Trắng kem */
+    --particle-secondary: #FFF0F5;
+
+    /* Màu nhấn khi tương tác: Vàng kim */
+    --particle-accent: #FFD700;
+
+    /* Màu chữ thông điệp */
+    --text-color: #FFF0F5;
+}
+
+/* ===== CSS CHÍNH ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg-color);
+    overflow: hidden;
+    font-family: 'Dancing Script', cursive;
+    /* Gradient nhẹ tạo chiều sâu */
+    background: radial-gradient(ellipse at center, #3d1520 0%, var(--bg-color) 70%);
+}
+
+canvas {
+    display: block;
+    cursor: pointer;
+}
+
+/* Hướng dẫn người dùng */
+.hint {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--particle-secondary);
+    font-size: 1.2rem;
+    opacity: 0.7;
+    text-align: center;
+    animation: pulse 2s ease-in-out infinite;
+    pointer-events: none;
+    text-shadow: 0 0 10px rgba(255, 208, 220, 0.5);
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+    50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
+}
+
+/* Hiệu ứng ánh sáng nền */
+.glow {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(255,105,180,0.15) 0%, transparent 70%);
+    pointer-events: none;
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+}
+
+/* ===== NÚt mời đi date ===== */
+.date-btn {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #FF69B4 0%, #FF1493 100%);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+    box-shadow: 0 5px 25px rgba(255, 105, 180, 0.5);
+    z-index: 100;
+}
+
+.date-btn.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.date-btn:hover {
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 8px 35px rgba(255, 105, 180, 0.7);
+}
+
+/* ===== Lá thư mời đi date ===== */
+.letter-section {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #2C0E14 0%, #1a0a0d 50%, #0d0507 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+    position: relative;
+}
+
+.letter-container {
+    max-width: 600px;
+    width: 100%;
+    background: linear-gradient(145deg, rgba(255,240,245,0.95) 0%, rgba(255,228,235,0.9) 100%);
+    border-radius: 20px;
+    padding: 50px 40px;
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.3),
+        0 0 100px rgba(255, 105, 180, 0.2),
+        inset 0 0 50px rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.letter-container::before {
+    content: '🌹';
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 3rem;
+    opacity: 0.7;
+}
+
+.letter-container::after {
+    content: '🌹';
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+    font-size: 3rem;
+    opacity: 0.7;
+    transform: rotate(180deg);
+}
+
+.letter-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.letter-header h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: #C71585;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.letter-date {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2rem;
+    color: #DB7093;
+    margin-top: 10px;
+}
+
+.letter-body {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.4rem;
+    line-height: 2;
+    color: #4a2c3d;
+    text-align: left;
+}
+
+.letter-body p {
+    margin-bottom: 20px;
+}
+
+.letter-signature {
+    text-align: right;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.6rem;
+    color: #C71585;
+    margin-top: 30px;
+}
+
+.letter-footer {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.yes-btn, .maybe-btn {
+    padding: 15px 35px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.3rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px;
+    transition: all 0.3s ease;
+}
+
+.yes-btn {
+    background: linear-gradient(135deg, #FF69B4 0%, #FF1493 100%);
+    color: white;
+    box-shadow: 0 5px 20px rgba(255, 105, 180, 0.4);
+}
+
+.yes-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 30px rgba(255, 105, 180, 0.6);
+}
+
+.maybe-btn {
+    background: transparent;
+    color: #C71585;
+    border: 2px solid #C71585;
+}
+
+.maybe-btn:hover {
+    background: #C71585;
+    color: white;
+}
+
+/* Confetti effect */
+.confetti {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+    display: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
